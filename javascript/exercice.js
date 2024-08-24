@@ -22,3 +22,30 @@ button.addEventListener("click", function () {
   // Change the text of the clicked element
   textElement.textContent = "Hello, Check!";
 });
+
+// Task 3: Basic Fetch
+
+function fetchAndDisplayTodos() {
+  fetch("https://jsonplaceholder.typicode.com/todos")
+    .then(response => response.json()) // Convert the response to JSON
+    .then(todos => {
+      // Create an unordered list element
+      const ul = document.createElement("ul");
+
+      // Loop through the first 5 todos
+      for (let i = 0; i < 5; i++) {
+        // Create a list item for each todo title
+        const li = document.createElement("li");
+        li.textContent = todos[i].title;
+
+        // Append item to the list
+        ul.appendChild(li);
+      }
+      // Append the list to the body of the document
+      document.body.appendChild(ul);
+    })
+    .catch(error => {
+      console.error("Error : ", error);
+    });
+}
+fetchAndDisplayTodos();
